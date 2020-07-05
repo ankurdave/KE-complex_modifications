@@ -1,0 +1,56 @@
+{
+    <%
+        optional_modifiers = ["caps_lock","left_command","left_control","left_option","right_command","right_control","right_option"]
+        remap_source_keys = [
+			"hyphen","equal_sign",
+			"q","w","e","r","t","y","u","i","o","p","open_bracket","close_bracket","backslash",
+			"s","d","f","g","h","j","k","l","semicolon","quote",
+			"z","x","c","v","b","n","comma","period","slash",
+		]
+        remap_dest_keys = [
+			"open_bracket","close_bracket",
+			"quote","comma","period","p","y","f","g","c","r","l","slash","equal_sign","backslash",
+			"o","e","u","i","d","h","t","n","s","hyphen",
+			"semicolon","q","j","k","x","b","w","v","z",
+        ]
+        apple_internal_keyboard =
+          [{
+             type: "device_if",
+             identifiers: [
+                 {
+                   vendor_id: 1452,
+                   product_id: 636
+                 }
+             ]}]
+        manipulators = each_key(
+            source_keys_list: remap_source_keys,
+            dest_keys_list: remap_dest_keys,
+            from_optional_modifiers: optional_modifiers,
+            conditions: apple_internal_keyboard
+        )
+        manipulators += each_key(
+            source_keys_list: remap_source_keys,
+            dest_keys_list: remap_dest_keys,
+            from_mandatory_modifiers: ["left_shift"],
+            from_optional_modifiers: optional_modifiers,
+            to_modifiers: ["left_shift"],
+            conditions: apple_internal_keyboard,
+        )
+        manipulators += each_key(
+            source_keys_list: remap_source_keys,
+            dest_keys_list: remap_dest_keys,
+            from_mandatory_modifiers: ["right_shift"],
+            from_optional_modifiers: optional_modifiers,
+            to_modifiers: ["right_shift"],
+            conditions: apple_internal_keyboard
+        )
+    %>
+    "title": "Dvorak for Apple Internal Keyboard",
+    "rules": [
+        {
+            "description": "Remap Apple internal keyboard to use Dvorak layout",
+            "manipulators":
+            <%= JSON.generate(manipulators) %>
+        }
+    ]
+}

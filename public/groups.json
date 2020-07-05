@@ -352,6 +352,9 @@
           "path": "json/dvorak_layout.json"
         },
         {
+          "path": "json/dvorak_for_apple_internal_keyboard.json"
+        },
+        {
           "path": "json/dvorak_cmd_qwerty_layout.json"
         },
         {
