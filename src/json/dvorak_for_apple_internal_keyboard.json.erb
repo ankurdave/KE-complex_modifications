@@ -13,6 +13,8 @@
 			"o","e","u","i","d","h","t","n","s","hyphen",
 			"semicolon","q","j","k","x","b","w","v","z",
         ]
+        # Determine Vendor/Product ID using:
+        #   ioreg -p IOUSB -l -b | grep -E "@|idVendor|idProduct"
         apple_internal_keyboard =
           [{
              type: "device_if",
